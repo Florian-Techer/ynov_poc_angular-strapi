@@ -1,0 +1,29 @@
+<div class="item-list">
+  <div class="item-list__grid" role="list">
+    @for (row of items(); track trackItem($index, row)) {
+      <div class="item-list__cell" role="listitem">
+        <app-item-card
+          [item]="row"
+          [actionLabel]="actionLabel()"
+          (action)="onItemAction(row)"
+        />
+      </div>
+    }
+  </div>
+
+  @if (items().length === 0) {
+    <p class="item-list__empty">Aucun élément à afficher.</p>
+  }
+
+  @if (showPagination()) {
+    <mat-paginator
+      class="item-list__paginator"
+      [length]="totalCount()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="pageSizeOptions()"
+      showFirstLastButtons
+      (page)="onPage($event)"
+    />
+  }
+</div>

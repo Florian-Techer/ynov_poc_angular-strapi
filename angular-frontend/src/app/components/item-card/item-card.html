@@ -1,0 +1,37 @@
+<mat-card class="item-card" appearance="outlined">
+  <div class="item-card__media">
+    @if (item().imageUrl) {
+      <img
+        class="item-card__image"
+        [src]="item().imageUrl!"
+        [alt]="item().imageAlt ?? item().title"
+        loading="lazy"
+      />
+    } @else {
+      <div class="item-card__placeholder" aria-hidden="true"></div>
+    }
+  </div>
+
+  <div class="item-card__body">
+    <h3 class="item-card__title">{{ item().title }}</h3>
+    @if (item().subtitle) {
+      <p class="item-card__meta">{{ item().subtitle }}</p>
+    }
+    @if (item().description) {
+      <p class="item-card__description">{{ item().description }}</p>
+    }
+    @if (actionLabel()) {
+      <div class="item-card__actions">
+        <button
+          mat-button
+          color="primary"
+          type="button"
+          class="item-card__cta"
+          (click)="onActionClick($event)"
+        >
+          {{ actionLabel() }}
+        </button>
+      </div>
+    }
+  </div>
+</mat-card>

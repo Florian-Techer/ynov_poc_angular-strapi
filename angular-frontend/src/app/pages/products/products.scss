@@ -1,0 +1,85 @@
+.catalog {
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+.catalog__header {
+  margin-bottom: 1.5rem;
+}
+
+.catalog__title {
+  margin: 0 0 0.5rem;
+  font: var(--mat-sys-headline-medium);
+}
+
+.catalog__intro {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-body-large);
+}
+
+.catalog__loading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  color: var(--mat-sys-on-surface-variant);
+  font: var(--mat-sys-body-medium);
+}
+
+.catalog__filters {
+  display: flex;
+  flex-wrap: wrap;
+  /* Même ligne de base que les champs (bord bas du form-field, sous-texte inclus). */
+  // align-items: flex-end;
+  gap: 1rem 1.25rem;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background-color: color-mix(
+    in srgb,
+    var(--mat-sys-surface-container-low) 80%,
+    transparent
+  );
+}
+
+.catalog__field {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.catalog__field--search {
+  flex: 2 1 18rem;
+}
+
+.catalog__field--price {
+  flex: 0 1 8.5rem;
+  max-width: 10rem;
+}
+
+.catalog__reset {
+  flex: 0 0 auto;
+  /* Aligné sur la hauteur du conteneur de champ Material (thème). */
+  height: var(--mat-form-field-container-height, 56px);
+  padding-inline: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.125rem;
+
+  mat-icon {
+    margin-right: 0.35rem;
+    margin-left: -0.125rem;
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.catalog__count {
+  margin: 0 0 1rem;
+  font: var(--mat-sys-title-small);
+  color: var(--mat-sys-on-surface-variant);
+}

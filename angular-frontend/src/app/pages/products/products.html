@@ -1,0 +1,103 @@
+<div class="catalog">
+  <header class="catalog__header">
+    <h1 class="catalog__title">Catalogue</h1>
+    <p class="catalog__intro">
+      Filtrez par catégorie, fourchette de prix ou recherchez par nom / description.
+    </p>
+  </header>
+
+  @if (loading()) {
+    <div class="catalog__loading" aria-busy="true">
+      <mat-progress-spinner diameter="40" mode="indeterminate" />
+      <span>Chargement des articles…</span>
+    </div>
+  } @else {
+    <section class="catalog__filters" aria-label="Filtres du catalogue">
+      <mat-form-field class="catalog__field catalog__field--search" appearance="outline">
+        <mat-label>Rechercher</mat-label>
+        <input
+          matInput
+          type="search"
+          placeholder="Nom ou description"
+          autocomplete="off"
+          [value]="searchQuery()"
+          (input)="onSearchInput($event)"
+        />
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="catalog__field" appearance="outline">
+        <mat-label>Catégorie</mat-label>
+        <mat-select
+          [value]="categoryFilter()"
+          (valueChange)="categoryFilter.set($event)"
+        >
+          <mat-option value="">Toutes les catégories</mat-option>
+          @for (cat of apiCategories(); track cat.id) {
+            <mat-option [value]="'' + cat.id">{{ cat.name }}</mat-option>
+          }
+          @if (hasUncategorized()) {
+            <mat-option value="__none__">Sans catégorie</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="catalog__field catalog__field--price" appearance="outline">
+        <mat-label>Prix min (€)</mat-label>
+        <input
+          matInput
+          type="number"
+          inputmode="decimal"
+          min="0"
+          step="0.01"
+          [placeholder]="priceStats().min.toFixed(2)"
+          [value]="priceMin() ?? ''"
+          (input)="onPriceMinInput($event)"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="catalog__field catalog__field--price" appearance="outline">
+        <mat-label>Prix max (€)</mat-label>
+        <input
+          matInput
+          type="number"
+          inputmode="decimal"
+          min="0"
+          step="0.01"
+          [placeholder]="priceStats().max.toFixed(2)"
+          [value]="priceMax() ?? ''"
+          (input)="onPriceMaxInput($event)"
+        />
+      </mat-form-field>
+
+      <button
+        mat-stroked-button
+        type="button"
+        class="catalog__reset"
+        (click)="resetFilters()"
+      >
+        <mat-icon>restart_alt</mat-icon>
+        Réinitialiser
+      </button>
+    </section>
+
+    <p class="catalog__count" role="status">
+      {{ filteredItems().length }}
+      @if (filteredItems().length <= 1) {
+        article
+      } @else {
+        articles
+      }
+    </p>
+
+    <app-item-list
+      [items]="filteredItems()"
+      [totalCount]="filteredItems().length"
+      [pageSize]="filteredItems().length || 1"
+      [pageIndex]="0"
+      [showPaginator]="false"
+      actionLabel="Voir le détail"
+      (itemAction)="onItemAction($event)"
+    />
+  }
+</div>

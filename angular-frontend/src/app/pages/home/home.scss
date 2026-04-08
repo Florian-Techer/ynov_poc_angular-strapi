@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  max-height: 100dvh;
+}
+
+.home {
+  margin: -1rem -1.25rem 0;
+  max-height: inherit;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.home__hero {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: clamp(200px, 30vh, 340px);
+  max-height: 42vh;
+  display: grid;
+  align-items: end;
+  color: #fff;
+}
+
+.home__hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.home__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, #000 75%, transparent) 0%,
+    color-mix(in srgb, #000 25%, transparent) 45%,
+    transparent 100%
+  );
+}
+
+.home__hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem 1.25rem 1.75rem;
+  max-width: 40rem;
+}
+
+.home__hero-title {
+  margin: 0 0 0.75rem;
+  font: var(--mat-sys-headline-large);
+  font-weight: 600;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.home__hero-text {
+  margin: 0 0 1.25rem;
+  font: var(--mat-sys-body-large);
+  opacity: 0.95;
+  max-width: 36rem;
+}
+
+.home__hero-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2rem;
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  font: var(--mat-sys-label-large);
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(1.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--mat-sys-on-primary);
+    outline-offset: 2px;
+  }
+}
+
+.home__section {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.5rem 1.25rem 1.5rem;
+  max-width: 100rem;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.home__section-title {
+  margin: 0 0 1rem;
+  font: var(--mat-sys-headline-small);
+}
+
+/* 5 cartes sur une ligne (large écran) + grille plus large que la home par défaut */
+.home__item-list {
+  display: block;
+}
+
+.home__item-list ::ng-deep .item-list__grid {
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}

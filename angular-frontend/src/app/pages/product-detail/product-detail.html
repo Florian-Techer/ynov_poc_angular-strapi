@@ -1,0 +1,112 @@
+<div class="detail">
+  @switch (vm().kind) {
+    @case ('loading') {
+      <div class="detail__state" aria-busy="true">
+        <mat-progress-spinner diameter="44" mode="indeterminate" />
+        <p>Chargement du produit…</p>
+      </div>
+    }
+    @case ('invalid') {
+      <div class="detail__state detail__state--muted">
+        <mat-icon class="detail__state-icon" aria-hidden="true">link_off</mat-icon>
+        <p>L'identifiant document (Strapi) est manquant ou invalide.</p>
+        <a mat-flat-button color="primary" routerLink="/products">Retour au catalogue</a>
+      </div>
+    }
+    @case ('notfound') {
+      <div class="detail__state detail__state--muted">
+        <mat-icon class="detail__state-icon" aria-hidden="true">inventory_2</mat-icon>
+        <p>Ce produit est introuvable ou n'existe plus.</p>
+        <a mat-flat-button color="primary" routerLink="/products">Retour au catalogue</a>
+      </div>
+    }
+    @case ('ok') {
+      @if (detailProduct(); as p) {
+        <div class="detail__sheet">
+          <nav class="detail__nav">
+            <a routerLink="/products" class="detail__back">
+              <mat-icon aria-hidden="true">arrow_back</mat-icon>
+              Catalogue
+            </a>
+          </nav>
+
+          <article class="detail__card">
+            <div class="detail__media">
+              @if (imageUrl(p); as src) {
+                <img
+                  class="detail__img"
+                  [src]="src"
+                  [alt]="p.title"
+                  width="900"
+                  height="1125"
+                />
+              } @else {
+                <div class="detail__placeholder" aria-hidden="true">
+                  <mat-icon>hide_image</mat-icon>
+                </div>
+              }
+            </div>
+
+            <div class="detail__body">
+              @if (p.category?.name) {
+                <p class="detail__category">{{ p.category!.name }}</p>
+              }
+
+              <h1 class="detail__title">{{ p.title }}</h1>
+
+              <p class="detail__price">{{ formatPrice(p) }}</p>
+
+              <div
+                class="detail__stock"
+                [class.detail__stock--out]="p.stock < 1"
+                role="status"
+              >
+                @if (p.stock < 1) {
+                  <mat-icon aria-hidden="true">block</mat-icon>
+                  Rupture de stock
+                } @else if (p.stock <= 5) {
+                  <mat-icon aria-hidden="true">warning_amber</mat-icon>
+                  Plus que {{ p.stock }} en stock
+                } @else {
+                  <mat-icon aria-hidden="true">check_circle</mat-icon>
+                  En stock ({{ p.stock }} disponibles)
+                }
+              </div>
+
+              @if (p.description) {
+                <section class="detail__section" aria-labelledby="detail-desc-label">
+                  <h2 id="detail-desc-label" class="detail__section-title">Description</h2>
+                  <div class="detail__description">{{ p.description }}</div>
+                </section>
+              }
+
+              <div class="detail__meta">
+                <span class="detail__meta-item">Réf. {{ p.id }}</span>
+                @if (p.slug) {
+                  <span class="detail__meta-item">{{ p.slug }}</span>
+                }
+              </div>
+
+              <div class="detail__actions">
+                <button
+                  mat-flat-button
+                  color="primary"
+                  type="button"
+                  class="detail__cta"
+                  [disabled]="p.stock < 1"
+                  (click)="addToCart(p)"
+                >
+                  <mat-icon aria-hidden="true">add_shopping_cart</mat-icon>
+                  Ajouter au panier
+                </button>
+                <a mat-stroked-button routerLink="/cart" class="detail__secondary">
+                  Voir le panier
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      }
+    }
+  }
+</div>

@@ -1,0 +1,17 @@
+<header class="app-header">
+  <a routerLink="/home" class="brand">{{ title() }}</a>
+  <nav class="nav">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      >Accueil</a
+    >
+    <a routerLink="/products" routerLinkActive="active">Produits</a>
+    <a routerLink="/cart" routerLinkActive="active">Panier</a>
+    <a routerLink="/checkout" routerLinkActive="active">Commande</a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>
+
+<app-footer />

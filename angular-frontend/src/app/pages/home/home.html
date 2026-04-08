@@ -1,0 +1,37 @@
+<div class="home">
+  <section class="home__hero" aria-labelledby="home-hero-title">
+    <div class="home__hero-media">
+      <img
+        class="home__hero-img"
+        src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+        alt="Rayon de vêtements en boutique, pièces suspendues sur cintres"
+        width="1600"
+        height="900"
+        fetchpriority="high"
+      />
+      <div class="home__hero-overlay"></div>
+    </div>
+    <div class="home__hero-content">
+      <h1 id="home-hero-title" class="home__hero-title">Une garde-robe qui vous ressemble</h1>
+      <p class="home__hero-text">
+        Pièces essentielles, coupes soignées et matières choisies — pour composer des tenues
+        du quotidien au grand soir.
+      </p>
+      <a routerLink="/products" class="home__hero-cta">Découvrir la collection</a>
+    </div>
+  </section>
+
+  <section class="home__section" aria-labelledby="home-latest-title">
+    <h2 id="home-latest-title" class="home__section-title">Derniers articles</h2>
+    <app-item-list
+      class="home__item-list"
+      [items]="latestItems()"
+      [totalCount]="latestItems().length"
+      [pageSize]="5"
+      [pageIndex]="0"
+      [showPaginator]="false"
+      actionLabel="Voir le détail"
+      (itemAction)="onArticleAction($event)"
+    />
+  </section>
+</div>

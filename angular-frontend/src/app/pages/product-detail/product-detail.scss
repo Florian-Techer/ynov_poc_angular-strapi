@@ -1,0 +1,238 @@
+.detail {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-bottom: 2.5rem;
+}
+
+/* Conteneur unique pour le parseur HTML (@if avec une seule racine). */
+.detail__sheet {
+  display: contents;
+}
+
+.detail__nav {
+  margin-bottom: 1.25rem;
+}
+
+.detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: var(--mat-sys-label-large);
+  color: var(--mat-sys-on-surface-variant);
+  text-decoration: none;
+
+  mat-icon {
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  &:hover {
+    color: var(--mat-sys-primary);
+  }
+}
+
+.detail__state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 40vh;
+  text-align: center;
+  padding: 2rem 1rem;
+
+  p {
+    margin: 0;
+    max-width: 24rem;
+    font: var(--mat-sys-body-large);
+    color: var(--mat-sys-on-surface-variant);
+  }
+
+  &--muted .detail__state-icon {
+    color: var(--mat-sys-on-surface-variant);
+  }
+}
+
+.detail__state-icon {
+  font-size: 3rem;
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.85;
+}
+
+.detail__card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface);
+  overflow: hidden;
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 0;
+  }
+}
+
+.detail__media {
+  background: var(--mat-sys-surface-container-low);
+  min-height: 280px;
+
+  @media (min-width: 900px) {
+    min-height: 100%;
+  }
+}
+
+.detail__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.detail__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  color: var(--mat-sys-on-surface-variant);
+  opacity: 0.5;
+
+  mat-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.detail__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem 1.5rem 2rem;
+
+  @media (min-width: 900px) {
+    padding: 2.25rem 2.5rem;
+    justify-content: center;
+  }
+}
+
+.detail__category {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mat-sys-primary);
+}
+
+.detail__title {
+  margin: 0;
+  font: var(--mat-sys-headline-medium);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.detail__price {
+  margin: 0;
+  font: var(--mat-sys-headline-small);
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.detail__stock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0.5rem 0.85rem;
+  border-radius: 2rem;
+  font: var(--mat-sys-body-medium);
+  background: color-mix(
+    in srgb,
+    var(--mat-sys-primary-container) 35%,
+    var(--mat-sys-surface)
+  );
+  color: var(--mat-sys-on-primary-container);
+
+  mat-icon {
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  &--out {
+    background: color-mix(
+      in srgb,
+      var(--mat-sys-error-container) 50%,
+      var(--mat-sys-surface)
+    );
+    color: var(--mat-sys-on-error-container);
+  }
+}
+
+.detail__section {
+  margin-top: 0.25rem;
+}
+
+.detail__section-title {
+  margin: 0 0 0.5rem;
+  font: var(--mat-sys-title-small);
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.detail__description {
+  margin: 0;
+  font: var(--mat-sys-body-large);
+  line-height: 1.65;
+  color: var(--mat-sys-on-surface-variant);
+  white-space: pre-line;
+}
+
+.detail__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--mat-sys-outline-variant);
+}
+
+.detail__meta-item {
+  font: var(--mat-sys-body-small);
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.detail__cta,
+.detail__secondary {
+  mat-icon {
+    margin-right: 0.35rem;
+    vertical-align: middle;
+    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.detail__cta {
+  min-height: 48px;
+  padding-inline: 1.25rem;
+}
+
+.detail__secondary {
+  min-height: 48px;
+}
