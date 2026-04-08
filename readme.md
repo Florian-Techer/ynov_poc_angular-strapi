@@ -209,3 +209,55 @@ Le “routing” REST est **généré** à partir des content-types, pas fichier
 Projet pédagogique / POC (Ynov, M2 Next.js)
 
 Pour toute évolution : brancher le panier et le checkout sur `POST /api/orders` (avec permissions et validation adaptées), et externaliser la configuration API hors du code source.
+
+
+## ⚔️ Angular vs Next.js — Résumé
+
+### 🅰️ Angular
+
+**Avantages**
+- Framework complet (routing, services, DI intégrés)
+- Structure très cadrée → idéal pour grosses apps
+- Bonne maintenabilité à long terme
+
+**Inconvénients**
+- Courbe d’apprentissage plus élevée
+- Plus verbeux et rigide
+- Moins flexible
+
+**Structure**
+- Organisation orientée métier (features, services, modules)
+- Workspace avec configuration centralisée
+
+---
+
+### ⚡ Next.js
+
+**Avantages**
+- Rapide à démarrer
+- Optimisé pour le web moderne (SEO, SSR, SSG)
+- Routing simple basé sur les fichiers
+- Flexible (écosystème React)
+
+**Inconvénients**
+- Moins structurant → dépend des conventions d’équipe
+- Complexité (Server/Client Components)
+- Architecture moins imposée
+
+**Structure**
+- Basée sur les routes (`app/`, `page.tsx`, `layout.tsx`)
+- Organisation orientée pages et UI
+
+---
+
+## 🧠 Différence clé
+
+- **Angular** → framework structurant (orienté entreprise)
+- **Next.js** → framework flexible orienté rendu web
+
+---
+
+## 🎯 Choix rapide
+
+- **Angular** → application métier complexe / grande équipe
+- **Next.js** → site web, produit, SEO, performance
